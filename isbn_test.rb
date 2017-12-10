@@ -56,5 +56,15 @@ class TestIsbn < Minitest::Test
 		my_number = 12345678901234
 		assert_equal("invalid", isbn_length(my_number))
 	end
+
+	def test_assert_that_isbn_is_invalid
+		my_number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+		assert_equal("invalid", isbn_validity(my_number))
+	end
+
+	def test_assert_that_isbn_is_valid
+		my_number = [5, 5, 5, 5, 5, 5, 5, 5, 5, 5,]
+		assert_equal("valid", isbn_validity(my_number))
+	end
 end
 
