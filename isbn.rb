@@ -15,13 +15,37 @@ def isbn_length(my_number)
 	end
 end
 
-def isbn_validity(my_number)
+def isbn10_validity(my_number)
 	ans = 0
-	my_number.each_with_index {|num, idx | ans += (idx) * num}
-	puts ans % 11
-	if ans % 11 == my_number[9]
-		"valid"
-	else
-		"invalid"
+	counter = 10
+	check_digit = my_number[9]
+	my_number.each do |num|
+		counter -= 1
+		ans += num * counter
 	end
+		if ans % 11 == check_digit
+			return "valid"
+		else
+			return "invalid"
+		end
 end
+
+def isbn13_validity(my_number)
+	ans = 0
+	my_number.each_with_index do |num, idx|
+		if idx % 2 == 0 
+			ans += num * 3
+		elsif 
+			ans += num * 1
+		end
+	end
+	ans = ans % 10 
+	ans = 10 - ans
+
+
+	if ans == my_number[12]
+		return "valid"
+	else
+		return "invalid"
+	end
+end	
